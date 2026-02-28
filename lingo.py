@@ -1,21 +1,32 @@
 def jugar_lingo():
-    secreta = "tiger"  # Puedes cambiarla por cualquier palabra de 5 letras
-    intento = input("Introduce una palabra de 5 letras: ").lower()
-    pista = ""
+    secreta = "tiger"
+    print("¡Bienvenido al Lingo! Intenta adivinar la palabra de 5 letras.")
 
-    # Recorremos cada posición de la palabra (0 a 4)
-    for i in range(5):
-        if intento[i] == secreta[i]:
-            # Letra correcta en posición correcta
-            pista += f"[{intento[i]}]"
-        elif intento[i] in secreta:
-            # Letra está en la palabra pero en otra posición
-            pista += f"({intento[i]})"
-        else:
-            # La letra no está
-            pista += intento[i]
-    
-    print(f"Clue: {pista}")
+    while True:
+        intento = input("\nIntroduce tu intento: ").lower()
+        
+        # Validación de longitud
+        if len(intento) != 5:
+            print("Error: La palabra debe tener exactamente 5 letras.")
+            continue
 
-# Llamamos a la función
+        # Si adivina la palabra, termina el juego
+        if intento == secreta:
+            print(f"Clue: [t][i][g][e][r]")
+            print("¡Felicidades! Has ganado.")
+            break
+
+        pista = ""
+        # Comparamos letra por letra
+        for i in range(5):
+            if intento[i] == secreta[i]:
+                pista += f"[{intento[i]}]"
+            elif intento[i] in secreta:
+                pista += f"({intento[i]})"
+            else:
+                pista += intento[i]
+        
+        print(f"Clue: {pista}")
+
+# Ejecutar el juego
 jugar_lingo()
